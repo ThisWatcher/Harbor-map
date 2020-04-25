@@ -22,13 +22,7 @@ class GuzzleHttpClient
      */
     public function getResponseBody($url)
     {
-        try {
-            $request = $this->client->request('GET', $url);
-        } catch (Exception $exception) {
-            dump($exception);
-            die();
-            return $exception;
-        }
+        $request = $this->client->request('GET', $url);
 
         return $request->getBody();
     }

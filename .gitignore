@@ -1,5 +1,6 @@
 
 ###> symfony/framework-bundle ###
+/.env
 /.env.test
 /.env.local
 /.env.local.php
@@ -12,6 +13,7 @@
 /composer.phar
 /composer.lock
 /symfony.lock
+/bin/*
 
 ###< symfony/framework-bundle ###
 

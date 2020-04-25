@@ -5,7 +5,8 @@ namespace App\Service\Harbor;
 use App\Entity\Harbor;
 use App\Service\HttpClient\GuzzleHttpClient;
 
-class HarbaHarborService {
+class HarbaHarborService implements HarborServiceInterface
+{
 
     /**
      * @var string
@@ -25,6 +26,9 @@ class HarbaHarborService {
         $this->httpClient = $httpClient;
     }
 
+    /**
+     * @{inheritdoc}
+     */
     public function getData()
     {
         $url = $this->apiUrl;
@@ -32,6 +36,9 @@ class HarbaHarborService {
         return json_decode($this->httpClient->getResponseBody($url));
     }
 
+    /**
+     * @{inheritdoc}
+     */
     public function getHarborObjects()
     {
         $results = $this->getData();

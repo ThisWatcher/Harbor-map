@@ -5,7 +5,8 @@ namespace App\Service\Weather;
 use App\Service\HttpClient\GuzzleHttpClient;
 use App\Entity\Weather;
 
-class OpenWeatherMapService {
+class OpenWeatherMapService implements WeatherServiceInterface
+{
 
     /**
      * @var string
@@ -58,7 +59,10 @@ class OpenWeatherMapService {
         return json_decode($this->httpClient->getResponseBody($url));
     }
 
-    public function getLocationWeatherData(int $lat, int $lon)
+    /**
+     * @{inheritdoc}
+     */
+    public function getLocationWeatherData($lat, $lon)
     {
         $param = [
             'lat' => $lat,
@@ -68,7 +72,10 @@ class OpenWeatherMapService {
         return $this->getData('weather', $param);
     }
 
-    public function getWeatherObject(int $lat, int $lon)
+    /**
+     * @{inheritdoc}
+     */
+    public function getWeatherObject($lat, $lon)
     {
         $results = $this->getLocationWeatherData($lat, $lon);
         $weather = new Weather();

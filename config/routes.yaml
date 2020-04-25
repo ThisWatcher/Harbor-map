@@ -4,6 +4,10 @@ index:
 harbor_list:
   path: /api/harbors
   controller: App\Controller\HarborController::getHarbors
+  defaults:
+    _format: json
 coordinates_weather:
   path: /api/weather
   controller: App\Controller\WeatherController::getLocationWeatherByCoordinates
+  defaults:
+    _format: json

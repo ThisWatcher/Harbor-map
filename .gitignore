@@ -1,5 +1,6 @@
 
 ###> symfony/framework-bundle ###
+/.env.test
 /.env.local
 /.env.local.php
 /.env.*.local
@@ -10,7 +11,8 @@
 /.idea
 /composer.phar
 /composer.lock
-./symfony.lock
+/symfony.lock
+
 ###< symfony/framework-bundle ###
 
 ###> symfony/webpack-encore-bundle ###
@@ -30,4 +32,5 @@ yarn-error.log
 .phpunit.result.cache
 /phpunit.xml
 /yarn.lock
+/phpunit.xml.dist
 ###< symfony/phpunit-bridge ###

@@ -34,5 +34,4 @@ yarn-error.log
 .phpunit.result.cache
 /phpunit.xml
 /yarn.lock
-/phpunit.xml.dist
 ###< symfony/phpunit-bridge ###

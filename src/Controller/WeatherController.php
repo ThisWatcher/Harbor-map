@@ -16,10 +16,7 @@ class WeatherController extends AbstractController
         $lon = intval($request->get('lon'));
 
         if (!($lat >= -90 && $lat <= 90) || !($lon >= -180 && $lon <= 180)) {
-            return new JsonResponse([
-                'status' => 'error',
-                'message' => 'latitude and longitude out of bounds',
-            ]);
+            throw new \Exception('Latitude or Longitude out of bounds');
         }
 
         $weather = $openWeatherMapService->getWeatherObject($lat, $lon);

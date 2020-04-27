@@ -23,7 +23,7 @@ yarn install
 4) run yarn to build assets
 
 ```
-yarn run encore dev & production
+yarn run encore dev
 ```
 
 5) start the server. If you have symfony service just run this command

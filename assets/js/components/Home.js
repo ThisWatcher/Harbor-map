@@ -6,8 +6,6 @@ import InfoWindowContent from './InfoWindowContent';
 import ReactDOMServer from 'react-dom/server';
 import axios from "axios";
 
-const weatherProviderUrl = 'https://api.openweathermap.org/data/2.5/';
-const harborProviderUrl = 'https://devapi.harba.co';
 const googleMapsUrl = 'https://maps.googleapis.com/maps/api/js';
 
 class Home extends React.Component {
@@ -49,7 +47,7 @@ class Home extends React.Component {
                 lon: lon
             }
         }).then(response => {
-            return response.data.message;
+            return response.data;
         }).catch(function (error) {
             console.log(error);
             return '';
@@ -60,10 +58,8 @@ class Home extends React.Component {
         const weather = await this.getWeather(props.data.lat, props.data.lon);
         const InfoWindowContentProps = {
             name: props.data.name,
-            imageHost: harborProviderUrl,
-            imagePath: props.data.image,
+            image: props.data.image,
             weather: weather,
-            weatherProvider: weatherProviderUrl
         };
         const element = React.createElement(InfoWindowContent, InfoWindowContentProps);
         return ReactDOMServer.renderToStaticMarkup(element);

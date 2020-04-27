@@ -2,21 +2,25 @@ import React from 'react';
 
 class InfoWindowContent extends React.Component {
     render() {
-        const imageHost = this.props.imageHost;
-        const imageUrl = this.props.imagePath ? imageHost.concat(this.props.imagePath) : null;
+        const weather = this.props.weather;
+
         return (
             <div>
-                {imageUrl &&
-                    <img src={imageUrl} alt={this.props.name} style={{ maxWidth: 100 + '%', maxHeight: 50 + 'px' }}/>
+                {this.props.image &&
+                    <img src={this.props.image} alt={this.props.name} style={{ maxWidth: 100 + '%', maxHeight: 50 + 'px' }}/>
                 }
                 <h2>{this.props.name}</h2>
-                <div>
-                    <strong>Weather: </strong>
-                    {this.props.weather}
+                {weather &&
                     <div>
-                        <i>weather Provided by: {this.props.weatherProvider}</i>
+                        <strong>Weather: </strong>
+                        {weather.place}: {weather.temperature}°C. Feels like {weather.heat_index}°C.
+                        Wind speed up to {weather.wind_speed} km/h.
+                        {weather.description}.
+                        <div>
+                            <i>weather Provided by: {weather.weather_provider}</i>
+                        </div>
                     </div>
-                </div>
+                }
             </div>
         );
     }

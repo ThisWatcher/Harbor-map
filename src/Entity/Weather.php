@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
-class Weather
+use JsonSerializable;
+
+class Weather implements JsonSerializable
 {
     /**
      * @var string
@@ -28,6 +30,11 @@ class Weather
      * @var string
      */
     private $description;
+
+    /**
+     * @var string
+     */
+    private $weatherProvider;
 
     /**
      * @return string
@@ -117,6 +124,36 @@ class Weather
     {
         $this->description = $description;
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWeatherProvider()
+    {
+        return $this->weatherProvider;
+    }
+
+    /**
+     * @param string $weatherProvider
+     * @return Weather
+     */
+    public function setWeatherProvider(string $weatherProvider)
+    {
+        $this->weatherProvider = $weatherProvider;
+        return $this;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'place' => $this->getPlace(),
+            'name' => $this->getTemperature(),
+            'heat_index' => $this->getHeatIndex(),
+            'wind_speed' => $this->getWindSpeed(),
+            'description' => $this->getDescription(),
+            'weather_provider' => $this->getWeatherProvider(),
+        ];
     }
 
 }

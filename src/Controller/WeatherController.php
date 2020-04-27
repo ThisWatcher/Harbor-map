@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Service\Weather\OpenWeatherMapService;
-use App\Service\Weather\WeatherResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,11 +19,7 @@ class WeatherController extends AbstractController
         }
 
         $weather = $openWeatherMapService->getWeatherObject($lat, $lon);
-        $weatherResponse = new WeatherResponse($weather);
 
-        return new JsonResponse([
-            'status' => 'ok',
-            'message' => $weatherResponse->getWeatherStringResponse()
-        ]);
+        return new JsonResponse($weather);
     }
 }

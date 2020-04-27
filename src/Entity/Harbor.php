@@ -2,32 +2,34 @@
 
 namespace App\Entity;
 
-class Harbor
+use JsonSerializable;
+
+class Harbor implements JsonSerializable
 {
     /**
      * @var int
      */
-    public $id;
+    private $id;
 
     /**
      * @var string
      */
-    public $name;
+    private $name;
 
     /**
      * @var int
      */
-    public $lat;
+    private $lat;
 
     /**
      * @var int
      */
-    public $lon;
+    private $lon;
 
     /**
      * @var string
      */
-    public $image;
+    private $image;
 
     /**
      * @return int
@@ -117,6 +119,17 @@ class Harbor
     {
         $this->image = $image;
         return $this;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'lon' => $this->getLon(),
+            'lat' => $this->getLat(),
+            'image' => $this->getImage(),
+        ];
     }
 
 }

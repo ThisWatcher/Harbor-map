@@ -86,6 +86,7 @@ class OpenWeatherMapService implements WeatherServiceInterface
             $weather->setHeatIndex(number_format($results->main->feels_like,1));
             $weather->setWindSpeed(number_format($results->wind->speed,1));
             $weather->setDescription($results->weather[0]->main);
+            $weather->setWeatherProvider($this->apiUrl);
         }
 
         return $weather;

@@ -14,6 +14,11 @@ class HarbaHarborService implements HarborServiceInterface
     private $apiUrl = 'https://devapi.harba.co/harbors/visible';
 
     /**
+     * @var string
+     */
+    private $imageHostUrl = 'https://devapi.harba.co';
+
+    /**
      * @var GuzzleHttpClient
      */
     private $httpClient;
@@ -51,7 +56,9 @@ class HarbaHarborService implements HarborServiceInterface
             $harbor->setName($result->name);
             $harbor->setLat($result->lat);
             $harbor->setLon($result->lon);
-            @$harbor->setImage($result->image);
+            if (isset($result->image)) {
+                $harbor->setImage($this->imageHostUrl . $result->image);
+            }
 
             $harbors[] = $harbor;
         }
